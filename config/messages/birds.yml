@@ -1,8 +1,10 @@
 index:
   success: List of all the birds.
 create:
-  success: Birs record has successfully created.
+  success: Bird record has successfully created.
 show:
   success: Details of a single bird.
+  failure: Record not found.
 destroy:
   success: Bird record has successfully deleted.
+  failure: Record not found.

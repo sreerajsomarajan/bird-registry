@@ -14,7 +14,7 @@ module Apis
       # GET /apis/birds
       def index
         msg = MSG['index']['success']
-        common_response(msg, birds: Bird.all)
+        common_response(msg, birds: Bird.where(visible: true))
       end
 
       # Create a new bird record.
@@ -23,30 +23,42 @@ module Apis
         bird = Bird.new(bird_params)
         if bird.save
           msg = MSG['create']['success']
+          opt = { bird: bird, status: :created }
         else
           @success = false
           msg = bird.errors.full_messages
+          opt = { status: :bad_request }
         end
-        common_response(msg, bird: bird)
+        common_response(msg, opt)
       end
 
       # Details of a single bird record.
       # GET /apis/birds/:id
       def show
-        msg = MSG['show']['success']
-        common_response(msg, bird: @bird)
+        opt = { status: :ok }
+        if @bird
+          msg = MSG['show']['success']
+          opt[:bird] = @bird
+        else
+          @success = false
+          msg = MSG['show']['failure']
+          opt[:status] = :not_found
+        end
+        common_response(msg, opt)
       end
 
       # Method to delete a bird record.
       # DELETE /apis/birds/:id
       def destroy
-        if @bird.destroy
+        opt = { status: :ok }
+        if @bird && @bird.destroy
           msg = MSG['destroy']['success']
         else
           @success = false
-          msg = @bird.errors.full_messages
+          msg = MSG['destroy']['failure']
+          opt[:status] = :not_found
         end
-        common_response(msg)
+        common_response(msg, opt)
       end
 
       private
@@ -59,8 +71,8 @@ module Apis
       # Never trust parameters from the scary internet,
       # only allow the white list through.
       def bird_params
-        params.require(:bird)
-              .permit(:name, :family, :continents, :added, :visible)
+        params.require(:birds)
+              .permit(:name, :family, :added, :visible, continents: [])
       end
     end
   end
