@@ -23,9 +23,9 @@ class ApisController < ApplicationController
   end
 
   # Method to handle record not found errors.
-  def record_not_found(error)
+  def record_not_found
     render json: {
-      error: error.message
+      error: 'Record not found.'
     }, status: :not_found
   end
 end

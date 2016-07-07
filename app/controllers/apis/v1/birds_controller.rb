@@ -11,14 +11,14 @@ module Apis
       MSG = YAML.load_file(GlobalConstants::MSG_PATH + 'birds.yml')
 
       # List all the birds.
-      # GET /apis/birds
+      # GET /apis/birds.json
       def index
         msg = MSG['index']['success']
         common_response(msg, birds: Bird.where(visible: true))
       end
 
       # Create a new bird record.
-      # POST /apis/birds
+      # POST /apis/birds.json
       def create
         bird = Bird.new(bird_params)
         if bird.save
@@ -33,7 +33,7 @@ module Apis
       end
 
       # Details of a single bird record.
-      # GET /apis/birds/:id
+      # GET /apis/birds/:id.json
       def show
         opt = { status: :ok }
         if @bird
@@ -48,7 +48,7 @@ module Apis
       end
 
       # Method to delete a bird record.
-      # DELETE /apis/birds/:id
+      # DELETE /apis/birds/:id.json
       def destroy
         opt = { status: :ok }
         if @bird && @bird.destroy
