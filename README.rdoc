@@ -1,28 +1,67 @@
-== README
+== Bird Registry
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Overview
+========
+Basic HTTP service with a JSON API. It will support the following requests:
 
-Things you may want to cover:
+ - `GET /apis/birds.json` - List all birds
+ - `POST /apis/birds.json` - Add a new bird
+ - `GET /apis/birds/{id}.json` - Get details on a specific bird
+ - `DELETE /apis/birds/{id}.json` - Delete a bird by id
 
-* Ruby version
+Technologies
+============
+ - Language: Ruby 2.2.1p85
+ - Framework: Rails 4.2.2
+ - Database: MongoDB
 
-* System dependencies
+API specification
+=================
 
-* Configuration
+List all birds
+--------------
+Only visible birds should be returned.
 
-* Database creation
+### Request `GET /apis/birds.json`
 
-* Database initialization
+### Response
 
-* How to run the test suite
+Valid status codes:
 
-* Services (job queues, cache servers, search engines, etc.)
+ - `200 OK`
 
-* Deployment instructions
+Add bird
+--------
 
-* ...
+### Request `POST /apis/birds.json`
 
+### Response
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Valid status codes:
+
+ - `201 Created` if the bird was successfully added
+ - `400 Bad request` if any mandatory fields were missing or if the input JSON was invalid
+
+Get bird by id
+--------------
+
+### Request `GET /apis/birds/{id}.json`
+
+### Response
+
+Valid status codes:
+
+ - `200 OK` if the bird exists
+ - `404 Not found` if the bird does not exist
+
+Delete bird by id
+-----------------
+
+### Request `DELETE /apis/birds/{id}.json`
+
+### Response
+
+Valid status codes:
+
+ - `200 OK` if the bird has been removed
+ - `404 Not found` if the bird didn't exist
