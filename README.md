@@ -83,6 +83,3 @@ Test Spec
  - Delete bird by id: rspec spec/requests/birds_spec.rb:60
  - Check validation error on creation: rspec spec/requests/birds_spec.rb:67
 
-To run test spec
- - rspec spec/requests/birds_spec.rb
-
