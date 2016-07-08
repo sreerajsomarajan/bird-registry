@@ -1,8 +1,6 @@
-== Bird Registry
-
 Overview
 ========
-Basic HTTP service with a JSON API. It will support the following requests:
+Bird Registry: Basic HTTP service with a JSON API. It will support the following requests:
 
  - `GET /apis/birds.json` - List all birds
  - `POST /apis/birds.json` - Add a new bird
