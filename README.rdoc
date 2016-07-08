@@ -22,9 +22,9 @@ List all birds
 --------------
 Only visible birds should be returned.
 
-### Request `GET /apis/birds.json`
+## Request `GET /apis/birds.json`
 
-### Response
+## Response
 
 Valid status codes:
 
@@ -33,9 +33,9 @@ Valid status codes:
 Add bird
 --------
 
-### Request `POST /apis/birds.json`
+## Request `POST /apis/birds.json`
 
-### Response
+## Response
 
 Valid status codes:
 
@@ -45,9 +45,9 @@ Valid status codes:
 Get bird by id
 --------------
 
-### Request `GET /apis/birds/{id}.json`
+## Request `GET /apis/birds/{id}.json`
 
-### Response
+## Response
 
 Valid status codes:
 
@@ -57,11 +57,32 @@ Valid status codes:
 Delete bird by id
 -----------------
 
-### Request `DELETE /apis/birds/{id}.json`
+## Request `DELETE /apis/birds/{id}.json`
 
-### Response
+## Response
 
 Valid status codes:
 
  - `200 OK` if the bird has been removed
  - `404 Not found` if the bird didn't exist
+
+How to setup
+============
+
+ - $ cd ~/workspace
+ - $ git clone https://github.com/sreerajsomarajan/bird-registry.git
+ - $ cd bird-registry
+ - $ bundle install --without production
+
+Test Spec
+=========
+
+ - List all birds: rspec spec/requests/birds_spec.rb:27
+ - Add bird: rspec spec/requests/birds_spec.rb:38
+ - Get bird by id: rspec spec/requests/birds_spec.rb:51
+ - Delete bird by id: rspec spec/requests/birds_spec.rb:60
+ - Check validation error on creation: rspec spec/requests/birds_spec.rb:67
+
+To run test spec
+ - rspec spec/requests/birds_spec.rb
+

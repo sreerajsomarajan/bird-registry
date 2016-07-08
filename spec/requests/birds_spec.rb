@@ -69,6 +69,7 @@ describe 'Birds API', type: :request do
          { birds: bird_params_invalid },
          Accept: 'application/bird-registry.v1'
     resp = JSON.parse(response.body)
+    expect(response).to have_http_status(400)
     expect(resp['success']).to eq false
     expect(resp['message'].first).to eq "Family can't be blank"
   end
