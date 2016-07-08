@@ -4,7 +4,7 @@ Bird Registry: Basic HTTP service with a JSON API. It will support the following
 
  - `GET /apis/birds.json` - List all birds
  - `POST /apis/birds.json` - Add a new bird
- - `GET /apis/birds/{id}.json` - Get details on a specific bird
+ - `GET /apis/birds/{id}.json` - Get details of a specific bird
  - `DELETE /apis/birds/{id}.json` - Delete a bird by id
 
 Technologies
